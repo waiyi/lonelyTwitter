@@ -41,4 +41,12 @@ public abstract class Tweet {
     public String toString(){
         return date.toString() + " | " + message;
     }
+    public Date getDate() {
+        return this.date;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+    //isImportant
 }
