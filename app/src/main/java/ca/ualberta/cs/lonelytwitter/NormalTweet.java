@@ -5,6 +5,10 @@ import java.util.Date;
 /**
  * Created by romansky on 1/12/16.
  */
+
+/**
+ * NormalTweet extends Tweet as well as implements Tweetable
+ */
 public class NormalTweet extends Tweet implements Tweetable {
     public NormalTweet(Date date, String message) {
         super(date, message);

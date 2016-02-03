@@ -5,6 +5,10 @@ import java.util.Date;
 /**
  * Created by waiyi on 1/12/16.
  */
+
+/**
+ * Mood is an abstract class  for Date and Mood with getter and setter and abstract String feeling
+ */
 public abstract class Mood {
     protected Date date;
 

@@ -5,6 +5,11 @@ import java.util.Date;
 /**
  * Created by romansky on 1/12/16.
  */
+
+/**
+ * ImportantTweet extends Tweet and implements Tweetable
+ * return TRUE for Boolean of isImportant and return message "!IMPORTANT!"
+ */
 public class ImportantTweet extends Tweet implements Tweetable {
     @Override
     public Boolean isImportant() {

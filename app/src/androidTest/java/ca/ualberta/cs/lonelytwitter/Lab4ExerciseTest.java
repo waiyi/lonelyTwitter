@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Lab4ExerciseTest extends ActivityInstrumentationTestCase2 {
     public Lab4ExerciseTest(){
-        super(LonelyTwitterActivity.class);
+        super(Lab4ExerciseTest.class);
     }
 
 
@@ -86,4 +86,4 @@ public class Lab4ExerciseTest extends ActivityInstrumentationTestCase2 {
     }
 }
 
-}
+
