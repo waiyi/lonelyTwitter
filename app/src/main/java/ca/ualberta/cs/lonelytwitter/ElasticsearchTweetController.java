@@ -22,6 +22,7 @@ import io.searchbox.core.SearchResult;
 public class ElasticsearchTweetController {
     private static JestDroidClient client;
 
+
     //TODO: A function that gets tweets
     public static class GetTweetsTask extends AsyncTask<String, Void, ArrayList<Tweet>> {
         @Override
@@ -33,6 +34,9 @@ public class ElasticsearchTweetController {
 
             // NOTE: I'm a making a huge assumption here, that only the first search term
             // will be used.
+
+            String search_string = "{\"query\": {\"match\": {\"message\": \""
+                    + search_strings[0] + "\" }}}";
 
             Search search = new Search.Builder(search_strings[0])
                     .addIndex("testing")
@@ -48,6 +52,7 @@ public class ElasticsearchTweetController {
                 } else {
                     // TODO: Add an error message, because that other thing was puzzling.
                     // TODO: Right here it will trigger if the search fails
+                    search_string = search_strings[0] + "Found nothing!";
                     Log.i("TODO", "We actually failed here, searching for tweets");
                 }
             } catch (IOException e) {
