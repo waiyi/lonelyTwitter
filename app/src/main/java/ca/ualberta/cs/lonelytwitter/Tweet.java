@@ -26,11 +26,21 @@ public abstract class Tweet {
     protected Date date;
     protected String message;
 
+    protected transient Bitmap thumbnail;
+    protected String thumbnailBase64;
+
+
+    public Tweet(Date date, String message, Bitmap thumbnail) {
+        this.date = date;
+        this.message = message;
+        this.thumbnail = thumbnail;
+    }
 
     public Tweet(Date date, String message) {
         this.date = date;
         this.message = message;
     }
+
 
     public Tweet(String message) {
         this.message = message;
@@ -61,13 +71,35 @@ public abstract class Tweet {
     @Override
     public String toString() {
         // Some people thought they would be funny and add tweets without dates...
-        if(date == null) {
-            if(message == null) {
+        if (date == null) {
+            if (message == null) {
                 return "";
             } else {
                 return message;
             }
         }
         return date.toString() + " | " + message;
+    }
+
+    public void addThumbnail(Bitmap newThumbnail) {
+        if (newThumbnail != null) {
+
+            thumbnail = newThumbnail;
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            newThumbnail.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+
+            byte[] b = byteArrayOutputStream.toByteArray();
+            thumbnailBase64 = Base64.encodeToString(b, Base64.DEFAULT);
+        }
+    }
+
+    public Bitmap getThumbnail() {
+        if (thumbnail == null && thumbnailBase64 != null ){
+            byte[] decodeString = Base64.decode(thumbnailBase64, Base64.DEFAULT);
+            thumbnail = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
+        }
+        return thumbnail;
+
     }
 }

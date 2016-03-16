@@ -9,6 +9,7 @@ import com.searchly.jestdroid.JestDroidClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.searchbox.core.DocumentResult;
@@ -21,6 +22,7 @@ import io.searchbox.core.SearchResult;
  */
 public class ElasticsearchTweetController {
     private static JestDroidClient client;
+
 
     public static class GetTweetsTask extends AsyncTask<String,Void,ArrayList<NormalTweet>> {
 
@@ -46,7 +48,7 @@ public class ElasticsearchTweetController {
             /* NEW! */
             String search_string;
             if(params[0] == "") {
-                search_string = "{\"from\":0,\"size\":10000}";
+                search_string = "{\"sort\": {\"date\": {\"order\": \"desc\"}},\"query\": {\"from\": 0,\"size\": 10000}}";
             } else {
                 // The following gets the top 10000 tweets matching the string passed in
                 search_string = "{\"from\":0,\"size\":10000,\"query\":{\"match\":{\"message\":\"" + params[0] + "\"}}}";
